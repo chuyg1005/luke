@@ -22,7 +22,7 @@ local token_indexers = {
     "train_data_path": std.extVar("TRAIN_DATA_PATH"),
     "validation_data_path": std.extVar("VALIDATION_DATA_PATH"),
     "trainer": {
-        "cuda_device": -1,
+        "cuda_device": std.parseInt(std.extVar("CUDA_DEVICE")),
         "num_epochs": 5,
         "checkpointer": {
             "keep_most_recent_by_count": 1
@@ -47,12 +47,27 @@ local token_indexers = {
             "type": "custom_linear_with_warmup",
             "warmup_ratio": 0.06
         },
-        "num_gradient_accumulation_steps": 8,
+        "num_gradient_accumulation_steps": 4,
         "patience": 3,
         "validation_metric": "+micro_fscore"
     },
-    "data_loader": {"batch_size": 4, "shuffle": true},
-    "random_seed": 0,
-    "numpy_seed": 0,
-    "pytorch_seed": 0
+    "data_loader": {
+        "batch_sampler": {
+            "type": "relation_classification",
+            "batch_size": 8,
+            "shuffle": true,
+            "train_mode": std.extVar("TRAIN_MODE")
+        },
+    },
+    "validation_data_loader": {
+        "batch_sampler": {
+            "type": "relation_classification",
+            "batch_size": 128,
+            "shuffle": false,
+            "mode": "validate"
+        },
+    },
+    "random_seed": std.parseInt(std.extVar("SEED")),
+    "numpy_seed": std.parseInt(std.extVar("SEED")),
+    "pytorch_seed": std.parseInt(std.extVar("SEED")),
 }

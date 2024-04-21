@@ -4,6 +4,7 @@ import torch.nn as nn
 from transformers import LukePreTrainedModel, LukeModel
 from transformers.models.luke.modeling_luke import EntityPairClassificationOutput
 
+
 # temporary use this implementation until this gets merged into transformers
 class LukeForEntityPairClassification(LukePreTrainedModel):
     def __init__(self, config):
@@ -19,21 +20,21 @@ class LukeForEntityPairClassification(LukePreTrainedModel):
         self.post_init()
 
     def forward(
-        self,
-        input_ids=None,
-        attention_mask=None,
-        token_type_ids=None,
-        position_ids=None,
-        entity_ids=None,
-        entity_attention_mask=None,
-        entity_token_type_ids=None,
-        entity_position_ids=None,
-        head_mask=None,
-        inputs_embeds=None,
-        labels=None,
-        output_attentions=None,
-        output_hidden_states=None,
-        return_dict=None,
+            self,
+            input_ids=None,
+            attention_mask=None,
+            token_type_ids=None,
+            position_ids=None,
+            entity_ids=None,
+            entity_attention_mask=None,
+            entity_token_type_ids=None,
+            entity_position_ids=None,
+            head_mask=None,
+            inputs_embeds=None,
+            labels=None,
+            output_attentions=None,
+            output_hidden_states=None,
+            return_dict=None,
     ):
         r"""
         labels (:obj:`torch.LongTensor` of shape :obj:`(batch_size,)` or :obj:`(batch_size, num_labels)`, `optional`):
