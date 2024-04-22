@@ -3,7 +3,8 @@
 CUDA_DEVICE=$1;
 export DATASET=$2;
 export TRAIN_MODE=$3;
-export VALIDATION_DATA_PATH=$4;
+EVAL_NAME=$4;
+export VALIDATION_DATA_PATH=data/${DATASET}/${EVAL_NAME}.json;
 export SEED=42;
 export PRED_ROOT=data/predictions;
 # example of LUKE
