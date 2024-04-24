@@ -54,7 +54,6 @@ class RelationClassifier(Model):
 
         self.results_save_path = None
         # print(self.vocab.get_token_to_index_vocabulary("labels"))
-        self.lamb = 0.
         args = train_mode.split('@')
         self.train_mode = args[0]
         self.kl_weight = 0.5
